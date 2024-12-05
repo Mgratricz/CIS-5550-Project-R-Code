@@ -1,0 +1,63 @@
+```{r Scatter Plot}
+ggplot(airbnb, mapping=aes(x=ReviewScoresAccuracy,y=ReviewScoresRating))+
+  geom_point()+
+  geom_smooth(se=FALSE) 
+ggplot(airbnb, mapping=aes(x=ReviewScoresCheckin,y=ReviewScoresRating))+
+  geom_point()+
+  geom_smooth(se=FALSE) 
+ggplot(airbnb, mapping=aes(x=ReviewScoresCleanliness,y=ReviewScoresRating))+
+  geom_point()+
+  geom_smooth(se=FALSE) 
+ggplot(airbnb, mapping=aes(x=ReviewScoresCommunication,y=ReviewScoresRating))+
+  geom_point()+
+  geom_smooth(se=FALSE) 
+ggplot(airbnb, mapping=aes(x=ReviewScoresLocation,y=ReviewScoresRating))+
+  geom_point()+
+  geom_smooth(se=FALSE) 
+ggplot(airbnb, mapping=aes(x=ReviewScoresValue,y=ReviewScoresRating))+
+  geom_point()+
+  geom_smooth(se=FALSE) 
+```
+
+```{r Regression Analysis}
+accuracy1 = lm(ReviewScoresAccuracy ~ ReviewScoresRating, data = airbnb)
+checkin1 = lm(ReviewScoresCheckin ~ ReviewScoresRating, data = airbnb)
+cleanliness1 = lm(ReviewScoresCleanliness ~ ReviewScoresRating, data = airbnb)
+communication1 = lm(ReviewScoresCommunication ~ ReviewScoresRating, data = airbnb)
+location1 = lm(ReviewScoresLocation ~ ReviewScoresRating, data = airbnb)
+value1 = lm(ReviewScoresValue ~ ReviewScoresRating, data = airbnb)
+
+summary(accuracy1)
+tidy(accuracy1)
+glance(accuracy1)
+
+summary(checkin1)
+tidy(checkin1)
+glance(checkin1)
+
+summary(cleanliness1)
+tidy(cleanliness1)
+glance(cleanliness1)
+
+summary(communication1)
+tidy(communication1)
+glance(communication1)
+
+summary(location1)
+tidy(location1)
+glance(location1)
+
+summary(value1)
+tidy(value1)
+glance(value1)
+```
+
+```{R Multi-Linear Regression}
+multi1 <- lm(ReviewScoresRating ~ ReviewScoresAccuracy + ReviewScoresCheckin +
+                  ReviewScoresCleanliness + ReviewScoresCommunication + 
+                  ReviewScoresLocation + ReviewScoresValue, data = airbnb)
+
+summary(multi1)
+tidy(multi1)
+glance(multi1)
+```
